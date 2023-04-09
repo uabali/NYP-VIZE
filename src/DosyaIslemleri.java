@@ -75,7 +75,14 @@ public class DosyaIslemleri {
 
    public static List<Uye> uyeleriGetir(String dosyaAdi) {
       List<Uye> uyeler = new ArrayList<>();
+      // burda dosyaya kayt ettiğim üyeleri Array list ile aldım.
 
+      // try catch javada hata yazdırma olanağı sağlar.
+      /*örnek olarak :
+       catch (FileNotFoundException e) {
+         System.out.println("Dosya bulunamadı: " + dosyaAdi);
+      }
+       */
       try (Scanner scanner = new Scanner(new File(dosyaAdi))) {
          String tip = "";
          while (scanner.hasNextLine()) {
@@ -86,17 +93,21 @@ public class DosyaIslemleri {
             } else if (line.startsWith("#GENEL ÜYE#")) {
                tip = "GENEL";
             } else {
-               String[] satirParcalari = line.split(" ");
-               if (satirParcalari.length >= 3) {
-                  String isim = satirParcalari[0];
-                  String soyisim = satirParcalari[1];
-                  String email = satirParcalari[2];
+               // burda yaziBlogu diye dizi tanımladım
+               // bu dosyadan aldığı 3 ifadeyi her birini bir blok olarak tanımlayıp alacak.
+               String[] yaziBlogu = line.split(" ");
+               if (yaziBlogu.length >= 3) {
+                  String isim = yaziBlogu[0];
+                  String soyisim = yaziBlogu[1];
+                  String email = yaziBlogu[2];
                   if (tip.equals("ELIT")) {
                      uyeler.add(new ElitUye(isim, soyisim, email));
                   } else if (tip.equals("GENEL")) {
                      uyeler.add(new GenelUye(isim, soyisim, email));
                   }
                } else {
+                  // ben 3 tür ifade almak istiyorum bunlar isim soyisim ve mail
+                  // eğer alacağı satırda 3 ten az blok olursa bu hatayı yazdıracak
                   throw new IllegalArgumentException("Satırda yeterli bilgi yok: " + line);
                }
             }

@@ -3,6 +3,7 @@ public class Uye {
    private String soyisim;
    private String email;
 
+   // counstractırlarımız
    public Uye(String isim, String soyisim, String email) {
       this.isim = isim;
       this.soyisim = soyisim;
@@ -14,6 +15,8 @@ public class Uye {
       return isim + " " + soyisim + " " + email;
    }
 
+   // fromString methodu sayesinde dosyadan -
+   // isim soyisim ve mail alabiliyoruz
    public static Uye fromString(String line) {
       String[] satirParcalari = line.split(" ");
 
@@ -34,16 +37,17 @@ public class Uye {
    public String getIsim() {
       return isim;
    }
-
+   // bu kodu hata için öneri seçeneğini seçip edindim
    public String getSoyisim() {
       return soyisim;
    }
-
+   // bu kodu hata için öneri seçeneğini seçip edindim
    public String getEmail() {
       return email;
    }
-
+   // bu kodu hata için öneri seçeneğini seçip edindim
    public String getType() {
       return null;
    }
 }
+// bu kodu hata için öneri seçeneğini seçip edindim
